@@ -1,9 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import { resolve } from 'path'
 
 export default defineConfig(
-    {
+    {   
+        optimizeDeps: {
+            exclude: ['vue-demi']
+        },
         build: {
             target: 'modules',
             //打包文件目录
@@ -15,41 +19,39 @@ export default defineConfig(
             rollupOptions: {
                 //忽略打包vue文件
                 external: ['vue'],
-                input: ['src/index.ts'],
+                input: ['index.ts'],
                 output: [
-                    {
+                    {   
                         format: 'es',
-                        //不用打包成.es.js,这里我们想把它打包成.js
                         entryFileNames: '[name].js',
-                        //让打包目录和我们目录对应
+                        // 让打包目录和我们目录对应
                         preserveModules: true,
-                        //配置打包根目录
-                        dir: '../../dist/es',
+                        exports: 'named',
+                        dir: resolve(__dirname, '../../dist/es'),
                         preserveModulesRoot: 'src'
                     },
                     {
                         format: 'cjs',
                         entryFileNames: '[name].js',
-                        //让打包目录和我们目录对应
                         preserveModules: true,
-                        //配置打包根目录
-                        dir: '../../dist/lib',
-                        preserveModulesRoot: 'src'
+                        dir: resolve(__dirname, '../../dist/lib'),
                     }
                 ]
             },
             lib: {
                 entry: './index.ts',
+                name: 'tt-im',
                 formats: ['es', 'cjs']
             }
         },
         plugins: [
             vue(),
             dts({
-                tsConfigFilePath: '../../tsconfig.json'
-            }),
-            dts({
-                outputDir: 'lib',
+                entryRoot: 'src',
+                outputDir: [
+                    resolve(__dirname, '../../dist/es'),
+                    resolve(__dirname, '../../dist/lib')
+                ],
                 tsConfigFilePath: '../../tsconfig.json'
             })
         ]

@@ -6,9 +6,3 @@ export default {
         components.forEach(c => app.use(c))
     }
 }
-
-// import Button from './src/button'
-
-// export {
-//     Button
-// }
