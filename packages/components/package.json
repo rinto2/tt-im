@@ -1,0 +1,17 @@
+{
+  "name": "tt-im",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": ["es", "lib"],
+  "keywords": ["tt-im"],
+  "author": "rinto2",
+  "license": "ISC",
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@tt-im/utils": "workspace:^1.0.0"
+  }
+}
