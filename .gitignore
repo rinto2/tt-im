@@ -1,5 +1,4 @@
 node_modules/
-packages/components/es
-packages/components/lib
+dist/
 .DS_Store
 .npm-error.log
