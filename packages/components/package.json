@@ -6,7 +6,6 @@
   "scripts": {
     "build": "vite build"
   },
-  "files": ["es", "lib"],
   "keywords": ["tt-im"],
   "author": "rinto2",
   "license": "ISC",

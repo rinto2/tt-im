@@ -5,9 +5,6 @@ import { resolve } from 'path'
 
 export default defineConfig(
     {   
-        optimizeDeps: {
-            exclude: ['vue-demi']
-        },
         build: {
             target: 'modules',
             //打包文件目录
@@ -28,7 +25,6 @@ export default defineConfig(
                         preserveModules: true,
                         exports: 'named',
                         dir: resolve(__dirname, '../../dist/es'),
-                        preserveModulesRoot: 'src'
                     },
                     {
                         format: 'cjs',
@@ -40,8 +36,7 @@ export default defineConfig(
             },
             lib: {
                 entry: './index.ts',
-                name: 'tt-im',
-                formats: ['es', 'cjs']
+                name: 'tt-im'
             }
         },
         plugins: [
